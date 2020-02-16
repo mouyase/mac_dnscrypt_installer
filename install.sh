@@ -9,6 +9,8 @@ sudo cp -f dnsmasq.conf /usr/local/etc/dnsmasq.conf
 
 sudo cp -f dnscrypt-proxy.toml /usr/local/etc/dnscrypt-proxy.toml
 
+sudo mkdir /usr/local/etc/dnsmasq.d
+
 WORKDIR="$(mktemp -d)"
 SERVERS=(114.114.114.114 180.76.76.76)
 # Not using best possible CDN pop: 1.2.4.8 210.2.4.8 223.5.5.5 223.6.6.6
