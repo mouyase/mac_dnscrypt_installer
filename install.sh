@@ -37,10 +37,17 @@ for _server in "${SERVERS[@]}"; do
   sudo sed -i "" "s|^\(server.*\)/[^/]*$|\1/$_server|" /usr/local/etc/dnsmasq.d/*."$_server".conf
 done
 
+curl https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/dnsmasq.conf -o "$WORKDIR/google-hosts.conf"
+
+sudo cp -f "$WORKDIR/google-hosts.conf" /usr/local/etc/dnsmasq.d/google-hosts.conf
+
+
 echo "Restarting dnsmasq service..."
 sudo brew services restart dnsmasq
 echo "Restarting dnscrypt-proxy service..."
 sudo brew services restart dnscrypt-proxy
+echo "Flush dnscrypt-proxy service..."
+sudo killall -HUP mDNSResponder
 
 echo "Cleaning up..."
 rm -rf "$WORKDIR"
