@@ -27,7 +27,7 @@
 ## The proxy will automatically pick the fastest, working servers from the list.
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
-server_names = ['google', 'cloudflare']
+server_names = ['nextdns']
 
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
@@ -199,7 +199,7 @@ cert_refresh_delay = 240
 ##
 ## If more than one resolver are specified, they will be tried in sequence.
 
-fallback_resolvers = ['114.114.114.114:53', '1.0.0.1:53']
+fallback_resolvers = ['114.114.114.114:53']
 
 
 ## Always use the fallback resolver before the system DNS settings.
@@ -225,7 +225,7 @@ netprobe_timeout = 60
 ## On other operating systems, the connection will be initialized
 ## but nothing will be sent at all.
 
-netprobe_address = '9.9.9.9:53'
+# netprobe_address = '9.9.9.9:53'
 
 
 ## Offline mode - Do not use any remote encrypted servers.

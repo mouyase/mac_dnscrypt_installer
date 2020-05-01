@@ -9,6 +9,8 @@ sudo cp -f dnsmasq.conf /usr/local/etc/dnsmasq.conf
 
 sudo cp -f dnscrypt-proxy.toml /usr/local/etc/dnscrypt-proxy.toml
 
+sudo rm -rf /usr/local/etc/dnsmasq.d
+
 sudo mkdir /usr/local/etc/dnsmasq.d
 
 WORKDIR="$(mktemp -d)"
@@ -46,7 +48,7 @@ echo "Restarting dnsmasq service..."
 sudo brew services restart dnsmasq
 echo "Restarting dnscrypt-proxy service..."
 sudo brew services restart dnscrypt-proxy
-echo "Flush dnscrypt-proxy service..."
+echo "Flush dns..."
 sudo killall -HUP mDNSResponder
 
 echo "Cleaning up..."
