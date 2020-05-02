@@ -1,6 +1,11 @@
 #!/bin/bash
 #Based from https://github.com/felixonmars/dnsmasq-china-list/blob/master/install.sh
 
+
+echo "Setting hosts..."
+
+sudo sh -c 'sync && echo "199.232.4.133 raw.githubusercontent.com">>/etc/hosts'
+
 brew install dnsmasq
 
 brew install dnscrypt-proxy
@@ -50,6 +55,9 @@ echo "Restarting dnscrypt-proxy service..."
 sudo brew services restart dnscrypt-proxy
 echo "Flush dns..."
 sudo killall -HUP mDNSResponder
+
+echo "Cleaning hosts..."
+sudo sed -i "" "s/199.232.4.133 raw.githubusercontent.com//g" /etc/hosts
 
 echo "Cleaning up..."
 rm -rf "$WORKDIR"
