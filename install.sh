@@ -5,6 +5,7 @@
 echo "Setting hosts..."
 
 sudo sh -c 'sync && echo "199.232.4.133 raw.githubusercontent.com">>/etc/hosts'
+sudo sh -c 'sync && echo "199.232.4.133 raw.github.com">>/etc/hosts'
 
 brew install dnsmasq
 
@@ -19,7 +20,7 @@ sudo rm -rf /usr/local/etc/dnsmasq.d
 sudo mkdir /usr/local/etc/dnsmasq.d
 
 WORKDIR="$(mktemp -d)"
-SERVERS=(114.114.114.114 180.76.76.76)
+SERVERS=(114.114.114.114)
 
 CONF_WITH_SERVERS=(accelerated-domains.china google.china apple.china)
 CONF_SIMPLE=(bogus-nxdomain.china)
@@ -29,7 +30,7 @@ git clone --depth=1 https://gitee.com/felixonmars/dnsmasq-china-list.git "$WORKD
 
 echo "Removing old configurations..."
 for _conf in "${CONF_WITH_SERVERS[@]}" "${CONF_SIMPLE[@]}"; do
-  sudo rm -f usr/local/etc/dnsmasq.d/"$_conf"*.conf
+  sudo rm -f /usr/local/etc/dnsmasq.d/"$_conf"*.conf
 done
 
 echo "Installing new configurations..."
@@ -58,6 +59,7 @@ sudo killall -HUP mDNSResponder
 
 echo "Cleaning hosts..."
 sudo sed -i "" "s/199.232.4.133 raw.githubusercontent.com//g" /etc/hosts
+sudo sed -i "" "s/199.232.4.133 raw.github.com//g" /etc/hosts
 
 echo "Cleaning up..."
 rm -rf "$WORKDIR"
